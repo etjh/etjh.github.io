@@ -1,0 +1,55 @@
+
+application {
+  config {
+    baseName swink
+    applicationType gateway
+    packageName nl.etjh
+    authenticationType jwt
+    prodDatabaseType mysql
+    clientFramework react
+  }
+  entities *
+}
+
+application {
+  config {
+    baseName comments
+    applicationType microservice
+    packageName nl.etjh
+    authenticationType jwt
+    prodDatabaseType mysql
+  }
+  entities Issue, Comment
+}
+
+application {
+  config {
+    baseName framework
+    applicationType microservice
+    packageName nl.etjh
+    authenticationType jwt
+    prodDatabaseType mysql
+  }
+  entities Framework
+}
+
+entity Issue {
+  ttProNo Integer required minlength(5)
+  exactMessage String required minlength(2)
+  commitMessage String required minlength(2)
+}
+
+entity Comment {
+  comment String required minlength(2)
+}
+
+entity Framework {
+  antTask String
+  description String
+}
+
+entity D {}
+
+relationship OneToMany {
+  Issue to Comment
+}
